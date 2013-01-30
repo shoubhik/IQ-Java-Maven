@@ -17,6 +17,10 @@ public class LinkList {
             this.next = null;
             this.random = null;
         }
+
+        public String toString(){
+            return this.data+ "";
+        }
     }
 
     public static LinkListNode getNewNode(int data){
@@ -167,5 +171,12 @@ public class LinkList {
 
     public void setHasRandomNode(boolean  hasRandomNode){
         this.hasRandomNode = hasRandomNode;
+    }
+
+    public void append(LinkList l){
+        LinkListNode temp = getHead();
+        while(temp.next != null)
+            temp = temp.next;
+        temp.next = l.getHead();
     }
 }
