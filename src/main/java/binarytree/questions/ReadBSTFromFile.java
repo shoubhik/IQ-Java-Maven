@@ -5,10 +5,8 @@ import binarytree.BinaryTreeConstructor;
 import binarytree.BinaryTreePrettyWriter;
 import binarytree.BinaryTreeWriter;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.net.URISyntaxException;
 
 /**
  * User: shoubhik Date: 11/12/12 Time: 3:43 PM Read/Construct a BST from file
@@ -77,7 +75,13 @@ public class ReadBSTFromFile implements BinaryTreeConstructor {
     public ReadBSTFromFile(String fileName) throws FileNotFoundException {
         assert (fileName != null);
         this.fileName = fileName;
-        this.fstream = new FileReader(fileName);
+        try {
+            File f = new File(getClass().getResource(this.fileName).toURI());
+            this.fstream = new FileReader(f);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
         this.in = new BufferedReader(fstream);
         // empty binary terr
         this.binaryTree = new BinaryTree();
