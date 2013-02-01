@@ -46,8 +46,16 @@ public class ReadBinaryTreeFromFile implements BinaryTreeConstructor {
     private BufferedReader in;
     private int idx  =  0;
     private BinaryTree binaryTree;
+    private boolean  pointToParent = false;
 
     public ReadBinaryTreeFromFile(String fileName) throws FileNotFoundException,
+            URISyntaxException {
+
+        this(fileName, false);
+    }
+
+    public ReadBinaryTreeFromFile(String fileName, boolean hasParentPointers)
+            throws FileNotFoundException,
             URISyntaxException {
         assert (fileName != null);
         this.fileName = fileName;
@@ -55,10 +63,10 @@ public class ReadBinaryTreeFromFile implements BinaryTreeConstructor {
         this.fstream = new FileReader(f);
         this.in = new BufferedReader(fstream);
         this.binaryTree = new BinaryTree(0);
-
+        this.pointToParent = hasParentPointers;
     }
 
-    private String[] getPreOrderWithSentennial() throws IOException {
+        private String[] getPreOrderWithSentennial() throws IOException {
         String line  = this.in.readLine().trim();
         return line.split(" ");
     }
@@ -69,13 +77,19 @@ public class ReadBinaryTreeFromFile implements BinaryTreeConstructor {
             node.data = Integer.parseInt(data[idx]);
             idx++;
             if(idx >= data.length) return ;
-            if(!data[idx].equals("#"))
+            if(!data[idx].equals("#")) {
                 node.makeNonNullLeft();
+                if(this.pointToParent)
+                    node.addParentPointerToLeftChild();
+            }
             createBinaryTree(data, node.left);
             idx++;
             if(idx >= data.length) return ;
-            if(!data[idx].equals("#"))
+            if(!data[idx].equals("#")){
                 node.makeNonNullRight();
+                if(this.pointToParent)
+                    node.addParentPointerToRightChild();
+            }
             createBinaryTree(data, node.right);
         }
     }

@@ -12,6 +12,8 @@ public class BinaryTree {
         public Node right;
         public Node nextRight;
         public Node nextLeft;
+        public Node parent;
+        public boolean visited;
 
         public Node(int data){
             this.data = data;
@@ -19,6 +21,8 @@ public class BinaryTree {
             this.right = null;
             this.nextRight = null;
             this.nextLeft = null;
+            this.parent = null;
+            this.visited  = false;
         }
 
         public String toString(){
@@ -40,10 +44,28 @@ public class BinaryTree {
             return this;
         }
 
+        public Node addParentPointerToLeftChild(){
+            if(this.left != null)
+                this.left.parent = this;
+            return this;
+        }
+
         public Node makeNonNullRight(){
             if(this.right == null)
                this.right = new Node(0);
             return this;
+        }
+
+        public Node addParentPointerToRightChild(){
+            if(this.right != null)
+                this.right.parent = this;
+            return this;
+        }
+
+        public boolean equals(Object node){
+            if(!(node instanceof Node))
+                return false;
+            return ((Node)node).data == this.data;
         }
     }
 
