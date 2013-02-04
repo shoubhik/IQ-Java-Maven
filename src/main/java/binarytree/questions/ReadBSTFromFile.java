@@ -91,12 +91,8 @@ public class ReadBSTFromFile implements BinaryTreeConstructor {
         }
 
         this.in = new BufferedReader(fstream);
-        // empty binary terr
-        this.binaryTree = new BinaryTree();
-
     }
 
-    @Override
     /**
      * Remember my post: Determine if a Binary Tree is a Binary Search Tree
      * (BST) http://www.leetcode.com/2010/09/determine-if-binary-tree-is-binary.html?
@@ -109,6 +105,8 @@ public class ReadBSTFromFile implements BinaryTreeConstructor {
      will take only O(n) time.
      */
     public BinaryTree construct() {
+        // empty binary tree
+        this.binaryTree = new BinaryTree();
         try {
             // int data[] = getDataFromFile();
             int data = Integer.parseInt(this.in.readLine());
