@@ -71,10 +71,18 @@ public class ReadBSTFromFile implements BinaryTreeConstructor {
     private BufferedReader in;
     // the binary tree to construct.
     private BinaryTree binaryTree;
+    private boolean hasParentLink;
 
     public ReadBSTFromFile(String fileName) throws FileNotFoundException {
+        this(fileName, false);
+
+    }
+
+    public ReadBSTFromFile(String fileName, boolean hasParentPointers)
+            throws FileNotFoundException {
         assert (fileName != null);
         this.fileName = fileName;
+        this.hasParentLink = hasParentPointers;
         try {
             File f = new File(getClass().getResource(this.fileName).toURI());
             this.fstream = new FileReader(f);
@@ -85,6 +93,7 @@ public class ReadBSTFromFile implements BinaryTreeConstructor {
         this.in = new BufferedReader(fstream);
         // empty binary terr
         this.binaryTree = new BinaryTree();
+
     }
 
     @Override
@@ -126,10 +135,14 @@ public class ReadBSTFromFile implements BinaryTreeConstructor {
                 data[0] = Integer.parseInt(line);
                 if (data[0] > min && data[0] < p.data) {
                     p.makeNonNullLeft();
+                    if(this.hasParentLink)
+                        p.addParentPointerToLeftChild();
                     readBSTHelper(min, p.data, p.left, data);
                 }
                 if (data[0] > p.data && data[0] < max) {
                     p.makeNonNullRight();
+                    if(this.hasParentLink)
+                        p.addParentPointerToRightChild();
                     readBSTHelper(p.data, max, p.right, data);
                 }
             } catch (IOException e) {

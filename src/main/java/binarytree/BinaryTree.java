@@ -14,6 +14,7 @@ public class BinaryTree {
         public Node nextLeft;
         public Node parent;
         public boolean visited;
+        public int level;
 
         public Node(int data){
             this.data = data;
@@ -23,6 +24,7 @@ public class BinaryTree {
             this.nextLeft = null;
             this.parent = null;
             this.visited  = false;
+            this.level = 0;
         }
 
         public String toString(){
