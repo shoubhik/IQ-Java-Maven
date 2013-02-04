@@ -37,6 +37,16 @@ public class BinaryTree {
             return this.right;
         }
 
+        public void setLeft(int data){
+            this.makeNonNullLeft();
+            this.left.data = data;
+        }
+
+        public void setRight(int data){
+            this.makeNonNullRight();
+            this.right.data = data;
+        }
+
         public Node makeNonNullLeft(){
             if(this.left == null){
                 this.left = new Node(0);
