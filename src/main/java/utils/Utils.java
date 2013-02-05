@@ -58,4 +58,8 @@ public class Utils {
         }
         return Integer.toBinaryString(num);
     }
+
+    public static double getDistance(CoOrdinate c1, CoOrdinate c2){
+        return Math.sqrt(((c1.x-c2.x)*(c1.x-c2.x)) + ((c1.y-c2.y)*(c1.y-c2.y)));
+    }
 }
