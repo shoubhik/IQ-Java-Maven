@@ -22,4 +22,8 @@ public class MutableInteger {
     public void increment(){
         this.val++;
     }
+
+    public String toString(){
+        return this.val + "";
+    }
 }
