@@ -103,7 +103,6 @@ public class LevelOrderPrint implements BinaryTreeWriter {
         }
     }
 
-    @Override
     public void write(BinaryTree bt) {
         switch (this.algo){
             case BFS:

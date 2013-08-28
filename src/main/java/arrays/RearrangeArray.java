@@ -65,7 +65,7 @@ public class RearrangeArray {
     }
 
     public static void main(String[] args) {
-        int arr[] = generateArray(5);
+        int arr[] = generateArray(3);
         System.out.println("original array:"+ Utils.printArraySingleLine(arr));
         System.out.println("using the rotation solution");
         rotationSolution(arr);

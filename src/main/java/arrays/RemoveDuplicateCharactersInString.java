@@ -10,13 +10,15 @@ public class RemoveDuplicateCharactersInString {
         int unique = 1;
         for(int i =1;i<str.length;i++){
             boolean isMatch = false;
-            for(int j = 0;j<i;j++){
+            int count = 0;
+            for(int j = 0;j< unique;j++){
                 if(str[i] == str[j]){
-                    isMatch = true;
+//                    isMatch = true;
                     break;
                 }
+                count++;
             }
-            if(!isMatch){
+            if(count == unique){
                 str[unique] = str[i];
                 unique++;
 
@@ -28,10 +30,10 @@ public class RemoveDuplicateCharactersInString {
     }
 
     public static void main(String[] args) {
-        char str[] = "aaaa".toCharArray();
+        char str[] = "abcbbede".toCharArray();
         removeDuplicates(str);
         int  i =0;
-        while(!(str[i] == '\0' || i == str.length)){
+        while(!(str[i] == '\0') && i < str.length){
             System.out.print(str[i]);
             i++;
         }
