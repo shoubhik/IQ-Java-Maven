@@ -33,25 +33,25 @@ public class  Heap<T extends Comparable<T>> {
     }
 
 
-    private void exchange(int i, int k){
-        T temp = heap.get(i);
-        heap.set(i, heap.get(k));
-        heap.set(k, temp);
+    private void exchange(int idx_i, int idx_k){
+        T temp = heap.get(idx_i);
+        heap.set(idx_i, heap.get(idx_k));
+        heap.set(idx_k, temp);
     }
 
-    private void maxHeapify(int i){
-        int l = left(i);
-        int r = right(i);
-        int largest;
-        if(l < heap.size() && heap.get(l).compareTo( heap.get(i)) > 0)
-            largest  = l;
-        else largest  = i;
-        if(r < heap.size() && heap.get(r).compareTo(heap.get(largest)) > 0)
-            largest = r;
-        if(largest != i)
+    private void maxHeapify(int idx_i){
+        int l_idx = left(idx_i);
+        int r_idx = right(idx_i);
+        int largest_idx;
+        if(l_idx < heap.size() && heap.get(l_idx).compareTo( heap.get(idx_i)) > 0)
+            largest_idx  = l_idx;
+        else largest_idx  = idx_i;
+        if(r_idx < heap.size() && heap.get(r_idx).compareTo(heap.get(largest_idx)) > 0)
+            largest_idx = r_idx;
+        if(largest_idx != idx_i)
         {
-            exchange(i,largest);
-            maxHeapify(largest);
+            exchange(idx_i,largest_idx);
+            maxHeapify(largest_idx);
         }
     }
 
@@ -71,7 +71,7 @@ public class  Heap<T extends Comparable<T>> {
         }
     }
 
-    private void addMAxHeap(T ele){
+    private void addMaxHeap(T ele){
         heap.add(ele);
         int p = getParent(heap.size() - 1);
         if(p >= 0)
@@ -111,7 +111,7 @@ public class  Heap<T extends Comparable<T>> {
 
     public void add(T ele){
         if(this.heap_type == HEAP_TYPE.MAX_HEAP)
-            addMAxHeap(ele);
+            addMaxHeap(ele);
         else if(this.heap_type == HEAP_TYPE.MIN_HEAP)
             addMinHeap(ele);
     }
@@ -129,7 +129,7 @@ public class  Heap<T extends Comparable<T>> {
     }
 
     public static void main(String[] args) {
-        Heap<Integer> heap = new Heap<Integer>(HEAP_TYPE.MIN_HEAP);
+        Heap<Integer> heap = new Heap<Integer>(HEAP_TYPE.MAX_HEAP);
         heap.add(1);
         heap.add(15);
         heap.add(20);
