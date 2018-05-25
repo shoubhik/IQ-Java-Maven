@@ -74,6 +74,7 @@ public class CountConnectedRegions {
             return;
         if(arr[i][j] == 1){
             visited[i][j] = true;
+            // Recur for all connected neighbours
             countIslandsWithoutModifyingTheArray(arr, visited,i-1, j-1);
             countIslandsWithoutModifyingTheArray(arr, visited,i-1, j);
             countIslandsWithoutModifyingTheArray(arr, visited,i-1, j+1);
@@ -87,13 +88,17 @@ public class CountConnectedRegions {
     }
 
     public static void main(String[] args) {
-        int count = 0;
         int arr[][] = { {1, 1, 0, 0, 0},
                         {0, 1, 0, 0, 1},
                         {1, 0, 0, 1, 1},
                         {0, 0, 0, 0, 0},
                         {0, 1, 1, 0, 1}};
+        // Make a bool array to mark visited cells.
+        // Initially all cells are unvisited
         boolean visited [][] = new boolean[5][5];
+        // Initialize count as 0 and travese through the all cells
+        // of given matrix
+        int count = 0;
         for(int i =0; i < 5;i ++)
             for(int j = 0 ; j<5;j++)
                 visited[i][j] = false;
@@ -101,7 +106,10 @@ public class CountConnectedRegions {
         // uses auxillary boolean array to track which spaces have been visited
         for(int  i =0; i<5;i++){
             for(int j = 0; j<5;j++){
-                if(arr[i][j] == 1 && !visited[i][j]){
+                if(arr[i][j] == 1 && !visited[i][j]){// If a cell with
+                                                   // value 1 is not
+                        // visited yet, then new island found, Visit all
+                        // cells in this island and increment island count
                     count++;
                     countIslandsWithoutModifyingTheArray(arr,visited,i,j);
                 }

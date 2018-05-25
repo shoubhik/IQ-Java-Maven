@@ -38,7 +38,7 @@ public class KCombination {
 
     public static void main(String[] args) {
         int arr[] = {1,2,3,4};
-        int  k = 4;
+        int  k = 2;
         List<Integer> list = new ArrayList<Integer>();
 //        printAllKCombinations(0, k, arr, list, k);
         printAllKCombinationsWithArray(0, k, arr, new int[k], k );

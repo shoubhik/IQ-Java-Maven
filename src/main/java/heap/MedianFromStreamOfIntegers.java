@@ -9,8 +9,8 @@ public class MedianFromStreamOfIntegers {
   PriorityQueue<Integer> rightHeap;
 
   public MedianFromStreamOfIntegers() {
-    this.leftHeap = new PriorityQueue<>(Collections.reverseOrder());
-    this.rightHeap = new PriorityQueue<>();
+    this.leftHeap = new PriorityQueue<>(Collections.reverseOrder()); // max heap
+    this.rightHeap = new PriorityQueue<>(); // min heap
   }
 
   public void putNumber(int num) {

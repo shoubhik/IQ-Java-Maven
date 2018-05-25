@@ -27,7 +27,7 @@ public class RomanToDecimal {
         // Comparing both values
         if (s1 >= s2) {
           // Value of current symbol is greater
-          // or equalto the next symbol
+          // or equal to the next symbol
           res = res + s1;
         } else {
           res = res + s2 - s1;
